@@ -1,0 +1,117 @@
+<!DOCTYPE html>
+<html lang="ar">
+<head>
+  <meta charset="UTF-8">
+  <title>الصفحة الأولى</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link href="https://fonts.googleapis.com/css2?family=Tajawal:wght@400;700&display=swap" rel="stylesheet">
+  <style>
+    body {
+      margin: 0;
+      padding: 0;
+      font-family: Tajawal, sans-serif;
+      background-color: #f2f2f2;
+    }
+
+    .header {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: 10px 15px;
+      background-color: #ffffff;
+      box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+      margin-bottom: 10px;
+    }
+
+    .lang-icon {
+      width: 40px;
+      height: 40px;
+    }
+
+    .title {
+      font-size: 18px;
+      font-weight: bold;
+      text-align: center;
+      flex-grow: 1;
+      color: #333;
+    }
+
+    .lang-button {
+      padding: 8px 16px;
+      font-size: 16px;
+      background-color: #ff9800;
+      color: white;
+      border: none;
+      border-radius: 6px;
+      cursor: pointer;
+      transition: opacity 0.3s;
+    }
+
+    .lang-button.green {
+      background-color: #4CAF50;
+    }
+
+    .lang-button:hover {
+      opacity: 0.9;
+    }
+  </style>
+</head>
+<body>
+
+  <!-- قائمة اللغات -->
+  <div id="languages-container"></div>
+
+  <script>
+    const languages = [
+      { name: "Java لغة", key: "javaUnlocked", pageBuy: "i.html", icon: "https://cdn-icons-png.flaticon.com/512/226/226777.png" },
+      { name: "C++ لغة", key: "cppUnlocked", pageBuy: "ii", icon: "https://cdn-icons-png.flaticon.com/512/6132/6132222.png" },
+      { name: "HTML", key: "htmlUnlocked", pageBuy: "iii", icon: "https://cdn-icons-png.flaticon.com/512/732/732212.png" },
+      { name: "CSS", key: "cssUnlocked", pageBuy: "iiii", icon: "https://cdn-icons-png.flaticon.com/512/732/732190.png" },
+      { name: "JavaScript لغة", key: "jsUnlocked", pageBuy: "iiiii", icon: "https://cdn-icons-png.flaticon.com/512/5968/5968292.png" },
+      { name: "C# لغة", key: "csharpUnlocked", pageBuy: "iiiiii", icon: "https://cdn-icons-png.flaticon.com/512/6132/6132221.png" },
+      { name: "PHP لغة", key: "phpUnlocked", pageBuy: "iiiiiii", icon: "https://cdn-icons-png.flaticon.com/512/919/919830.png" },
+      { name: "Ruby لغة", key: "rubyUnlocked", pageBuy: "iiiiiiii", icon: "https://cdn-icons-png.flaticon.com/512/919/919842.png" },
+      { name: "Swift لغة", key: "swiftUnlocked", pageBuy: "iiiiiiiii", icon: "https://cdn-icons-png.flaticon.com/512/919/919836.png" },
+      { name: "Kotlin لغة", key: "kotlinUnlocked", pageBuy: "iiiiiiiiii", icon: "https://cdn-icons-png.flaticon.com/512/919/919835.png" },
+      { name: "Go لغة", key: "goUnlocked", pageBuy: "iiiiiiiiiii", icon: "https://cdn-icons-png.flaticon.com/512/5968/5968313.png" },
+      { name: "TypeScript لغة", key: "tsUnlocked", pageBuy: "iiiiiiiiiiii", icon: "https://cdn-icons-png.flaticon.com/512/5968/5968381.png" }
+    ];
+
+    const container = document.getElementById("languages-container");
+
+    languages.forEach(lang => {
+      const isUnlocked = localStorage.getItem(lang.key) === "true";
+
+      const header = document.createElement("div");
+      header.className = "header";
+
+      const button = document.createElement("button");
+      button.className = "lang-button";
+      if (isUnlocked) {
+        button.textContent = "فتح";
+        button.classList.add("green");
+        button.onclick = () => window.location.href = "page4.html";
+      } else {
+        button.textContent = "شراء";
+        button.onclick = () => window.location.href = lang.pageBuy;
+      }
+
+      const title = document.createElement("div");
+      title.className = "title";
+      title.textContent = ` ${lang.name}`;
+
+      const icon = document.createElement("img");
+      icon.className = "lang-icon";
+      icon.src = lang.icon;
+      icon.alt = `${lang.name} Icon`;
+
+      header.appendChild(button);
+      header.appendChild(title);
+      header.appendChild(icon);
+
+      container.appendChild(header);
+    });
+  </script>
+
+</body>
+</html>
